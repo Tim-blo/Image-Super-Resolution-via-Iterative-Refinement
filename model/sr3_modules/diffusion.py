@@ -99,8 +99,11 @@ class GaussianDiffusion(nn.Module):
             linear_end=schedule_opt['linear_end'])
         betas = betas.detach().cpu().numpy() if isinstance(
             betas, torch.Tensor) else betas
+        print("BETAS: \n", betas)
         alphas = 1. - betas
+        print("ALPHAS: \n", alphas)
         alphas_cumprod = np.cumprod(alphas, axis=0)
+        print("ALPHAS CUMPROD: \n", alphas_cumprod)
         alphas_cumprod_prev = np.append(1., alphas_cumprod[:-1])
         self.sqrt_alphas_cumprod_prev = np.sqrt(
             np.append(1., alphas_cumprod))
